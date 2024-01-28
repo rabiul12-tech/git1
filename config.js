@@ -1,2 +1,2 @@
 console.log("config.js loaded");
-console.log("version 1 update ");
+console.log("version 11 ");
