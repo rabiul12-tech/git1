@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Talula Hill Farm Share</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Nunito+Sans:wght@700;800&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        /* Color palette */
+        --brand-600: #2ba84a;
+        --brand-500: #45c15b;
+        --brand-300: #a6e27f;
+        --leaf-900: #15361e;
+        --ink-900: #111827;
+        --ink-600: #4b5563;
+        --ink-400: #9ca3af;
+        --bg-50: #f5fbf4;
+        --card: #ffffff;
+        --line: #e5e7eb;
+        --accent-yellow: #f7c948;
+
+        /* Design tokens */
+        --shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
+        --radius: 16px;
+        --radius-pill: 999px;
+
+        /* Spacing */
+        --section-padding-desktop: 96px;
+        --section-padding-tablet: 64px;
+        --section-padding-mobile: 48px;
+        --container-max: 1200px;
+        --gutter: 24px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--ink-600);
+        background-color: var(--bg-50);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Poppins", "Nunito Sans", sans-serif;
+        font-weight: 700;
+        color: var(--ink-900);
+        letter-spacing: -0.5px;
+      }
+
+      h1 {
+        font-size: clamp(32px, 5vw, 56px);
+        line-height: 1.2;
+        margin-bottom: 24px;
+      }
+
+      h2 {
+        font-size: clamp(28px, 4vw, 32px);
+        margin-bottom: 24px;
+      }
+
+      h3 {
+        font-size: 24px;
+        margin-bottom: 16px;
+      }
+
+      .container {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+      }
+
+      .section {
+        padding: var(--section-padding-mobile) 0;
+      }
+
+      @media (min-width: 768px) {
+        .section {
+          padding: var(--section-padding-tablet) 0;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .section {
+          padding: var(--section-padding-desktop) 0;
+        }
+      }
+
+      /* Header Styles */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 16px 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      header.scrolled {
+        background-color: var(--card);
+        box-shadow: var(--shadow);
+        padding: 12px 0;
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        color: var(--leaf-900);
+        text-decoration: none;
+      }
+
+      .logo i {
+        color: var(--brand-600);
+        margin-right: 8px;
+      }
+
+      .nav-desktop {
+        display: none;
+      }
+
+      .nav-mobile {
+        display: block;
+      }
+
+      .hamburger {
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: var(--ink-900);
+        cursor: pointer;
+      }
+
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--card);
+        padding: 24px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 999;
+      }
+
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+
+      .close-menu {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: var(--ink-900);
+        cursor: pointer;
+      }
+
+      .mobile-nav {
+        list-style: none;
+        margin-top: 48px;
+      }
+
+      .mobile-nav li {
+        margin-bottom: 24px;
+      }
+
+      .mobile-nav a {
+        font-size: 18px;
+        color: var(--ink-900);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .mobile-nav a:hover {
+        color: var(--brand-600);
+      }
+
+      .cta-button {
+        display: inline-block;
+        background-color: var(--brand-600);
+        color: white;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 12px 24px;
+        border-radius: var(--radius-pill);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+      }
+
+      .cta-button:hover {
+        background-color: #238c3d;
+        transform: translateY(-2px);
+      }
+
+      /* Hero Section */
+      .hero {
+        position: relative;
+        height: 100vh;
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        background-image: url("https://images.unsplash.com/photo-1591722861017-928652e853a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80");
+        background-size: cover;
+        background-position: center;
+        margin-top: 0;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          180deg,
+          rgba(21, 54, 30, 0.65) 0%,
+          rgba(21, 54, 30, 0.25) 60%,
+          rgba(21, 54, 30, 0) 100%
+        );
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        color: white;
+        max-width: 600px;
+        padding: 0 var(--gutter);
+      }
+
+      .hero-eyebrow {
+        color: var(--brand-300);
+        font-weight: 500;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .hero-subtitle {
+        font-size: 20px;
+        margin-bottom: 32px;
+        color: white;
+      }
+
+      /* About Section */
+      .about {
+        background-color: var(--bg-50);
+      }
+
+      .about-container {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+      }
+
+      @media (min-width: 1024px) {
+        .about-container {
+          flex-direction: row;
+          align-items: center;
+        }
+
+        .about-image,
+        .about-content {
+          flex: 1;
+        }
+      }
+
+      .about-image {
+        position: relative;
+      }
+
+      .about-image img {
+        width: 100%;
+        height: auto;
+        border-radius: var(--radius);
+        border: 8px solid var(--card);
+        box-shadow: var(--shadow);
+      }
+
+      .about-eyebrow {
+        color: var(--brand-600);
+        font-weight: 500;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .about-content p {
+        margin-bottom: 24px;
+      }
+
+      .secondary-button {
+        display: inline-block;
+        background-color: transparent;
+        color: var(--ink-900);
+        font-weight: 500;
+        padding: 12px 24px;
+        border-radius: var(--radius-pill);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid var(--line);
+      }
+
+      .secondary-button:hover {
+        background-color: #f9fafb;
+        transform: translateY(-2px);
+      }
+
+      /* Share Program Section */
+      .share-program {
+        background-color: var(--card);
+      }
+
+      .section-header {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 64px;
+      }
+
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+      }
+
+      @media (min-width: 768px) {
+        .steps {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+
+        .step {
+          flex: 1;
+        }
+      }
+
+      .step {
+        text-align: center;
+        position: relative;
+      }
+
+      .step-number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background-color: var(--brand-300);
+        color: var(--leaf-900);
+        font-weight: 700;
+        border-radius: 50%;
+        margin: 0 auto 24px;
+      }
+
+      .step-icon {
+        font-size: 32px;
+        color: var(--brand-600);
+        margin-bottom: 16px;
+      }
+
+      .step-title {
+        font-size: 20px;
+        margin-bottom: 16px;
+        color: var(--ink-900);
+      }
+
+      /* Farm Box Section */
+      .farm-box {
+        background-color: var(--bg-50);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .farm-box-container {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+      }
+
+      @media (min-width: 1024px) {
+        .farm-box-container {
+          flex-direction: row;
+          align-items: center;
+        }
+
+        .farm-box-content,
+        .farm-box-image {
+          flex: 1;
+        }
+      }
+
+      .farm-box-content {
+        background-color: var(--card);
+        padding: 32px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .farm-box-image {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+      }
+
+      .farm-box-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: var(--radius);
+      }
+
+      /* Fresh Farm Box Section */
+      .fresh-farm-box {
+        background-color: var(--card);
+      }
+
+      .fresh-container {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+      }
+
+      @media (min-width: 1024px) {
+        .fresh-container {
+          flex-direction: row;
+          align-items: center;
+        }
+
+        .fresh-image,
+        .fresh-content {
+          flex: 1;
+        }
+      }
+
+      .fresh-image img {
+        width: 100%;
+        border-radius: var(--radius);
+      }
+
+      .benefits-list {
+        list-style: none;
+        margin-bottom: 32px;
+      }
+
+      .benefits-list li {
+        margin-bottom: 16px;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .benefits-list i {
+        color: var(--brand-600);
+        margin-right: 12px;
+        font-size: 20px;
+      }
+
+      .price-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--accent-yellow);
+        color: var(--ink-900);
+        font-weight: 700;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 24px;
+        font-size: 24px;
+      }
+
+      .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 32px;
+      }
+
+      .ghost-button {
+        display: inline-block;
+        color: var(--brand-600);
+        font-weight: 500;
+        text-decoration: none;
+        padding: 12px 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .ghost-button:hover {
+        text-decoration: underline;
+      }
+
+      /* Mission Section */
+      .mission {
+        background-color: #eaf7e7;
+        padding: 64px 0;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .mission-container {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+      }
+
+      @media (min-width: 1024px) {
+        .mission-container {
+          flex-direction: row;
+          align-items: center;
+        }
+
+        .mission-content,
+        .mission-video {
+          flex: 1;
+        }
+      }
+
+      .mission-video {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .mission-video img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 80px;
+        background-color: var(--brand-600);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 32px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .play-button:hover {
+        background-color: var(--brand-500);
+        transform: translate(-50%, -50%) scale(1.05);
+      }
+
+      /* FAQ Section */
+      .faq {
+        background-color: var(--bg-50);
+      }
+
+      .accordion {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .accordion-item {
+        border-bottom: 1px solid var(--line);
+        padding: 24px 0;
+      }
+
+      .accordion-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .accordion-title {
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--ink-900);
+      }
+
+      .accordion-icon {
+        color: var(--ink-400);
+        transition: transform 0.3s ease;
+      }
+
+      .accordion-content {
+        color: var(--ink-600);
+        padding-top: 16px;
+        display: none;
+      }
+
+      .accordion-item.active .accordion-content {
+        display: block;
+      }
+
+      .accordion-item.active .accordion-icon {
+        transform: rotate(180deg);
+      }
+
+      /* CTA Section */
+      .cta-band {
+        background: linear-gradient(90deg, #1f7a39 0%, #2ba84a 100%);
+        color: white;
+        padding: 64px 0;
+        text-align: center;
+      }
+
+      .cta-content {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .cta-band h2 {
+        color: white;
+        margin-bottom: 24px;
+      }
+
+      .cta-band p {
+        margin-bottom: 32px;
+        font-size: 18px;
+      }
+
+      .cta-secondary {
+        background-color: white;
+        color: var(--brand-600);
+      }
+
+      .cta-secondary:hover {
+        background-color: #f0f0f0;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--card);
+        padding: 64px 0 0;
+      }
+
+      .footer-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      @media (min-width: 768px) {
+        .footer-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .footer-container {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      .footer-column h3 {
+        font-size: 18px;
+        margin-bottom: 24px;
+        color: var(--ink-900);
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        color: var(--leaf-900);
+        margin-bottom: 16px;
+      }
+
+      .footer-logo i {
+        color: var(--brand-600);
+        margin-right: 8px;
+      }
+
+      .footer-about {
+        margin-bottom: 24px;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 16px;
+      }
+
+      .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: var(--bg-50);
+        color: var(--brand-600);
+        border-radius: 50%;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        background-color: var(--brand-600);
+        color: white;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 12px;
+      }
+
+      .footer-links a {
+        color: var(--ink-600);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--brand-600);
+      }
+
+      .contact-info {
+        list-style: none;
+      }
+
+      .contact-info li {
+        margin-bottom: 16px;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .contact-info i {
+        color: var(--brand-600);
+        margin-right: 12px;
+        font-size: 20px;
+      }
+
+      .map-placeholder {
+        height: 200px;
+        background-color: var(--bg-50);
+        border-radius: var(--radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--ink-400);
+      }
+
+      .footer-bottom {
+        margin-top: 64px;
+        padding: 24px 0;
+        border-top: 1px solid var(--line);
+        text-align: center;
+        color: var(--ink-400);
+      }
+
+      /* Responsive adjustments */
+      @media (min-width: 768px) {
+        .nav-desktop {
+          display: flex;
+          align-items: center;
+          gap: 32px;
+        }
+
+        .nav-mobile {
+          display: none;
+        }
+
+        .desktop-nav {
+          display: flex;
+          list-style: none;
+          gap: 32px;
+        }
+
+        .desktop-nav a {
+          color: var(--ink-900);
+          text-decoration: none;
+          font-weight: 500;
+          transition: color 0.3s ease;
+        }
+
+        .desktop-nav a:hover {
+          color: var(--brand-600);
+        }
+
+        .phone-pill {
+          display: inline-flex;
+          align-items: center;
+          padding: 8px 16px;
+          background-color: var(--bg-50);
+          color: var(--brand-600);
+          border-radius: var(--radius-pill);
+          text-decoration: none;
+          font-weight: 500;
+          margin-right: 16px;
+        }
+
+        .phone-pill i {
+          margin-right: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header / Navigation -->
+    <header id="header">
+      <div class="header-container">
+        <a href="#" class="logo">
+          <i class="fas fa-leaf"></i>
+          Talula Hill
+        </a>
+
+        <nav class="nav-desktop">
+          <ul class="desktop-nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Share Program</a></li>
+            <li><a href="#">Farm Box</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+
+          <a href="tel:+60123456789" class="phone-pill">
+            <i class="fas fa-phone"></i> +60 12 345 6789
+          </a>
+
+          <a href="#" class="cta-button">Join Now</a>
+        </nav>
+
+        <nav class="nav-mobile">
+          <button class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <button class="close-menu" id="close-menu">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <ul class="mobile-nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Share Program</a></li>
+        <li><a href="#">Farm Box</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+
+      <a href="tel:+60123456789" class="phone-pill">
+        <i class="fas fa-phone"></i> +60 12 345 6789
+      </a>
+
+      <a href="#" class="cta-button">Join Now</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero section">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-eyebrow">Talula Hill Malaysia</div>
+          <h1>Join The Talula Hill Farm Share</h1>
+          <p class="hero-subtitle">Produce Straight From The Farm</p>
+          <a href="#" class="cta-button">Join Now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about">
+      <div class="container about-container">
+        <div class="about-image">
+          <img
+            src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+            alt="Talula Hill Farm"
+          />
+        </div>
+        <div class="about-content">
+          <div class="about-eyebrow">Talula Hill Malaysia</div>
+          <h2>The Talula Hill Farm</h2>
+          <p>
+            Nestled in the lush countryside of Malaysia, Talula Hill Farm is
+            dedicated to sustainable farming practices and providing our
+            community with the freshest, most flavorful produce available.
+          </p>
+          <p>
+            Our farm share program connects you directly with the source of your
+            food, ensuring that you receive seasonal, nutrient-rich vegetables
+            and fruits while supporting local agriculture.
+          </p>
+          <a href="#" class="secondary-button">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Share Program Section -->
+    <section class="section share-program">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our Farm Share Program</h2>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-icon"><i class="fas fa-vote-yea"></i></div>
+            <h3 class="step-title">Participate</h3>
+            <p>Vote on crops monthly and have a say in what we grow.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-icon"><i class="fas fa-seedling"></i></div>
+            <h3 class="step-title">Learn</h3>
+            <p>
+              Receive weekly updates & permaculture tips directly from our
+              farmers.
+            </p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-icon"><i class="fas fa-truck"></i></div>
+            <h3 class="step-title">Receive Our Farm Box</h3>
+            <p>Get fresh, seasonal produce delivered straight to your door.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Farm Box Section -->
+    <section class="section farm-box">
+      <div class="container farm-box-container">
+        <div class="farm-box-content">
+          <h2>Our Farm Box</h2>
+          <p>
+            Each week, we carefully curate a selection of our freshest seasonal
+            produce, ensuring variety and nutritional balance. Our crop rotation
+            follows sustainable practices, so you'll experience the true taste
+            of each season.
+          </p>
+          <p>
+            From crisp leafy greens to vibrant root vegetables and sweet fruits,
+            our farm box brings the best of Talula Hill directly to your
+            kitchen.
+          </p>
+          <a href="#" class="secondary-button">Learn More</a>
+        </div>
+
+        <div class="farm-box-image">
+          <img
+            src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80"
+            alt="Fresh Farm Produce"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Fresh Farm Box Section -->
+    <section class="section fresh-farm-box">
+      <div class="container fresh-container">
+        <div class="fresh-image">
+          <img
+            src="https://images.unsplash.com/photo-1573246123716-6b1782bfc499?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2062&q=80"
+            alt="Fresh Farm Box"
+          />
+        </div>
+
+        <div class="fresh-content">
+          <h2>Fresh Farm Box</h2>
+
+          <ul class="benefits-list">
+            <li>
+              <i class="fas fa-check-circle"></i> 8+ varieties of seasonal
+              produce
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i> Harvested & delivered in under
+              24 hours
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i> 100% plastic-free packaging
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i> Weekly or fortnightly plans
+              available
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i> Customizable options for
+              preferences
+            </li>
+          </ul>
+
+          <div class="price-badge">$79</div>
+          <div style="margin-bottom: 16px">Farm Box</div>
+
+          <div class="button-row">
+            <a href="#" class="cta-button">Buy Now</a>
+            <button class="ghost-button">See Delivery Map & FAQ</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="section mission">
+      <div class="container mission-container">
+        <div class="mission-content">
+          <h2>Connecting Families</h2>
+          <p>
+            At Talula Hill, we believe in the power of food to bring people
+            together. Our farm share program connects families with the source
+            of their food, fostering a deeper appreciation for nature's bounty
+            and the hard work that goes into growing it.
+          </p>
+          <p>
+            By joining our community, you're not just receiving fresh
+            produce—you're becoming part of a movement that values
+            sustainability, health, and connection.
+          </p>
+          <a href="#" class="secondary-button">Buy Now</a>
+        </div>
+
+        <div class="mission-video">
+          <img
+            src="https://images.unsplash.com/photo-1520839099965-1c8d7e7ddf83?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+            alt="Farm Video"
+          />
+          <div class="play-button">
+            <i class="fas fa-play"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq">
+      <div class="container">
+        <div class="section-header">
+          <h2>Frequently Asked Questions</h2>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <h3 class="accordion-title">
+                How does the farm share program work?
+              </h3>
+              <span class="accordion-icon"
+                ><i class="fas fa-chevron-down"></i
+              ></span>
+            </div>
+            <div class="accordion-content">
+              <p>
+                Our farm share program allows you to subscribe to regular
+                deliveries of fresh, seasonal produce directly from our farm.
+                You can choose between weekly or fortnightly deliveries, and
+                even have a say in what crops we grow through our monthly voting
+                system.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <h3 class="accordion-title">
+                What's included in a typical farm box?
+              </h3>
+              <span class="accordion-icon"
+                ><i class="fas fa-chevron-down"></i
+              ></span>
+            </div>
+            <div class="accordion-content">
+              <p>
+                Each farm box contains 8+ varieties of seasonal produce, which
+                may include leafy greens, root vegetables, fruits, and herbs.
+                The exact contents vary based on seasonality and harvest
+                conditions, but we always ensure a diverse and balanced
+                selection.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <h3 class="accordion-title">Can I customize my farm box?</h3>
+              <span class="accordion-icon"
+                ><i class="fas fa-chevron-down"></i
+              ></span>
+            </div>
+            <div class="accordion-content">
+              <p>
+                Yes! We offer customizable options for preferences and
+                allergies. You can note your preferences in your account
+                settings, and we'll do our best to accommodate them while
+                working with what's in season.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <h3 class="accordion-title">What areas do you deliver to?</h3>
+              <span class="accordion-icon"
+                ><i class="fas fa-chevron-down"></i
+              ></span>
+            </div>
+            <div class="accordion-content">
+              <p>
+                We currently deliver to most urban areas in Malaysia. During
+                signup, you can enter your postal code to check if we deliver to
+                your area. We're continuously expanding our delivery routes to
+                reach more communities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Band -->
+    <section class="cta-band">
+      <div class="container cta-content">
+        <h2>I'm Interested!</h2>
+        <p>
+          One-time trial boxes are now available. Reach us for availability.
+        </p>
+        <a href="#" class="cta-button cta-secondary">Reach Us</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container footer-container">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <i class="fas fa-leaf"></i>
+            Talula Hill
+          </div>
+          <p class="footer-about">
+            Bringing fresh, sustainable produce directly from our farm to your
+            table.
+          </p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Share Program</a></li>
+            <li><a href="#">Farm Box</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Contact Us</h3>
+          <ul class="contact-info">
+            <li><i class="fas fa-phone"></i> +60 12 345 6789</li>
+            <li><i class="fas fa-envelope"></i> hello@talulahill.com</li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i> 123 Farm Road, Countryside,
+              Malaysia
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Find Us</h3>
+          <div class="map-placeholder">
+            <i class="fas fa-map-marked-alt"></i> Map Location
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="container">
+          <p>&copy; 2023 Talula Hill Farm Share. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu functionality
+      const hamburger = document.getElementById("hamburger");
+      const closeMenu = document.getElementById("close-menu");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      hamburger.addEventListener("click", () => {
+        mobileMenu.classList.add("open");
+        document.body.style.overflow = "hidden";
+      });
+
+      closeMenu.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        document.body.style.overflow = "auto";
+      });
+
+      // Header scroll effect
+      const header = document.getElementById("header");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // FAQ accordion functionality
+      const accordionItems = document.querySelectorAll(".accordion-item");
+
+      accordionItems.forEach((item) => {
+        const header = item.querySelector(".accordion-header");
+
+        header.addEventListener("click", () => {
+          item.classList.toggle("active");
+        });
+      });
+    </script>
+  </body>
+</html>
